@@ -3,14 +3,17 @@ set -e
 
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-KERNEL_NAME="${1:-uv-python312}"
+KERNEL_NAME="${1:-shared-python312}"
 KERNEL_DISPLAY_NAME="${2:-$KERNEL_NAME}"
 KERNEL_DIR="$HOME/.local/share/jupyter/kernels/$KERNEL_NAME"
 
 cd "$REPO_DIR"
 
-echo "Creating/syncing uv environment..."
-uv sync --frozen
+echo "Creating uv environment..."
+uv venv --python 3.12 .venv
+
+echo "Installing packages from requirements.txt..."
+uv pip install --python .venv/bin/python -r requirements.txt
 
 echo "Making kernel launcher executable..."
 chmod +x "$REPO_DIR/kernel.sh"

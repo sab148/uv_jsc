@@ -1,0 +1,3 @@
+ipykernel
+pyzmq
+jupyter-client
