@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+module load uv 
+
 REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 KERNEL_NAME="${1:-shared-python312}"
